@@ -1,0 +1,39 @@
+Q1.Write the following a functional interface and implement it using lambda:
+
+    -> First number is greater than second number or not Parameter (int ,int ) Return boolean
+    -> Increment the number by 1 and return incremented value Parameter (int) Return int
+    -> Concatination of 2 string Parameter (String , String ) Return (String)
+    -> Convert a string to uppercase and return . Parameter (String) Return (String)
+Ans. 
+public class Main{
+
+    interface CompareTwoNumber{
+        boolean isGreater(int a,int b);
+    }
+
+    interface IncrementNum{
+        int increment(int num);
+    }
+
+    interface ConcatTwoString{
+        String concat(String a,String b);
+    }
+
+    interface ConvertToUppercase{
+        String toUpper(String a);
+    }
+
+    public final static void main(String args[]){
+        CompareTwoNumber compareTwoNumber = (a,b)-> a>b;
+        System.out.println("Is 10 greater than 3? "+ compareTwoNumber.isGreater(10,3));
+
+        IncrementNum incrementNum = (a)-> a+1;
+        System.out.println("Increment 10 -: "+incrementNum.increment(10));
+
+        ConcatTwoString concatTwoString=(a,b)-> a+b;
+        System.out.println("Concatination of Aman and Gupta -: "+concatTwoString.concat("Aman","Gupta"));
+
+        ConvertToUppercase convertToUppercase = (a)-> a.toUpperCase();
+        System.out.println("Convert hello to Uppercase -: "+convertToUppercase.toUpper("hello"));
+    }
+}
