@@ -1,0 +1,68 @@
+Q4.WAP using java 8:
+
+    -> Collect all  even numbers from a list using stream
+    -> Given a list of objects of following class:
+
+           class Employee{
+           String fullName;
+           Long salary;
+           String city;
+           }
+
+          Get list of all unique firstNames of employees where their salary is less than 5000 and who live in delhi.
+          Note: Full name is concatenation of first name, middle name and last name with single space in between.
+Ans.
+->  import java.util.Arrays;
+    import java.util.List;
+    import java.util.stream.Collectors;
+    
+    public class Main {
+    
+        public static void main(String[] args) {
+            List<Integer> num = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+            List<Integer> evenNum = num.stream()
+                    .filter(n -> n % 2 == 0)
+                    .collect(Collectors.toList());
+            System.out.println("Even Numbers: " + evenNum);
+    
+        }
+    }
+
+->  import java.util.Arrays;
+    import java.util.List;
+    import java.util.stream.Collectors;
+    
+    class Employee {
+        String fullName;
+        Long salary;
+        String city;
+    
+        public Employee(String fullName, Long salary, String city) {
+            this.fullName = fullName;
+            this.salary = salary;
+            this.city = city;
+        }
+    
+        public String getFirstName() {
+            return fullName.split(" ")[0];
+        }
+    }
+    
+    public class Main {
+        public static void main(String[] args) {
+            List<Employee> employees = Arrays.asList(
+                    new Employee("Aman Gupta", 3000L, "Delhi"),
+                    new Employee("Utkarsh Gupta", 4500L, "Delhi"),
+                    new Employee("Amit Yadav", 6000L, "Delhi"),
+                    new Employee("Kishan Yadav", 4000L, "Delhi"),
+                    new Employee("Kunal Singh", 4000L, "Mumbai")
+            );
+    
+            List<String> uniqueFirstNames = employees.stream()
+                    .filter(e -> e.salary < 5000 && "Delhi".equals(e.city))
+                    .map(Employee::getFirstName)
+                    .collect(Collectors.toList());
+    
+            System.out.println("Unique First Names in Delhi with Salary < 5000: " + uniqueFirstNames);
+        }
+    }
