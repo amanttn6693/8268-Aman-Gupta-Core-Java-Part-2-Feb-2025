@@ -1,0 +1,30 @@
+Q2.Using (instance) Method reference create and apply add and subtract method and using (Static) Method reference create and apply multiplication method for the functional interface created.
+Ans.
+public class Main {
+
+    public interface MathOperation {
+        int operate(int a,int b);
+    }
+
+    static int multiply(int a,int b){
+        return (int) a*b;
+    }
+
+    int addition(int a,int b){
+        return a+b;
+    }
+
+    int subtract(int a,int b){
+        return a-b;
+    }
+
+    public static void main(String[] args) {
+        MathOperation staticMethod=Main::multiply;
+        System.out.println("Multiplication of 10 and 2 -: "+staticMethod.operate(10,2));
+        MathOperation instanceMethod=new Main()::addition;
+        System.out.println("Addition of 10 and 2 -: "+instanceMethod.operate(10,2));
+        MathOperation instanceMethod1=new Main()::subtract;
+        System.out.println("Addition of 10 and 2 -: "+instanceMethod1.operate(10,2));
+
+    }
+}
